@@ -7,7 +7,7 @@ This repository hosts two interactive web applications: a Weather App and a Calc
 
 **Weather App**
 
-Real-time Data: Fetches current weather information from an API.
+Real-time Data: Fetches current weather information from Openweathermap API.
 Dynamic UI: Updates seamlessly based on weather conditions with smooth transitions.
 City Search: Allows users to get weather details for any city.
 
