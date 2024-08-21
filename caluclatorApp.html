@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CaluclatorApp</title>
+</head> 
+
+<body>
+    <div class="flex flex-col gap-5 mt-2 rounded-[5%] bg-black justify-center items-center m-auto w-[380px] h-[630px]">
+        <div class="text-center">
+            <p class="text-white m-4 uppercase font-bold text-lg">Caluclator</p>
+            <input class=" w-[90%] h-[90px] px-3 border-none bg-[#333333] rounded-lg text-white text-[60px]" type="text"
+                name="input" id="inputBox">
+        </div>
+        <div class="text-[24px] font-bold text-white grid gap-2">
+            <div class="flex gap-2 ">
+                <button class="button w-20 h-20 bg-[#A5A5A5] !text-black rounded-full ">AC</button>
+                <button class="button  w-20 h-20 bg-[#A5A5A5] !text-black rounded-full ">DEL</button>
+                <button class="button  w-20 h-20 bg-[#A5A5A5] !text-black rounded-full ">%</button>
+                <button class="button  w-20 h-20 bg-[#FE9505] rounded-full ">/</button>
+            </div>
+            <div class="flex gap-2 ">
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">7</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">8</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">9</button>
+                <button class="button  w-20 h-20 bg-[#FE9505] rounded-full">*</button>
+            </div>
+            <div class="flex gap-2 ">
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">4</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">5</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">6</button>
+                <button class="button  w-20 h-20 bg-[#FE9505] rounded-full">-</button>
+            </div>
+            <div>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">1</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">2</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">3</button>
+                <button class="button  w-20 h-20 bg-[#FE9505] rounded-full">+</button>
+            </div>
+            <div class="flex gap-2 ">
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">00</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">0</button>
+                <button class="button  w-20 h-20 bg-[#333333] rounded-full">.</button>
+                <button class="button  w-20 h-20 bg-[#FE9505] rounded-full">=</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let input = document.getElementById('inputBox');
+        let buttons = document.querySelectorAll('button');
+
+        let string = "";
+        let arr = Array.from(buttons);
+        arr.forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.innerHTML == '=') {
+
+                    string = eval(string);
+                    input.value = string;
+                }
+
+                else if (e.target.innerHTML == 'AC') {
+                    string = "";
+                    input.value = string;
+                }
+                else if (e.target.innerHTML == 'DEL') {
+                    string = string.substring(0, string.length - 1);
+                    input.value = string;
+                }
+                else {
+                    string += e.target.innerHTML;
+                    input.value = string;
+                }
+
+            })
+        })
+    </script>
+</body>
+
+</html>

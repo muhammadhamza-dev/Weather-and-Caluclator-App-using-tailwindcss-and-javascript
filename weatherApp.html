@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <title>WeatherApp</title>
+</head>
+
+<body>
+
+    <div  class="bg-blue-300 flex justify-center h-screen">
+        <div class="w-[40%]">
+        <div class='flex flex-row justify-center pt-10 items-center'>
+            <div id="" class='search  flex flex-row gap-2 w-full '>
+                <input  type="text"  placeholder="Enter city name" class=' border-none py-3 px-5 rounded-full w-full focus:outline-none text-lg capitalize shadow-lg' />
+                <button class='bg-blue-500 hover:bg-blue-600 shadow-lg text-white font-bold px-6 py-4
+         rounded-full'>Search</button>
+            </div>
+        </div>
+        <div>
+            
+            <div class='flex flex-col justify-between gap-14 items-center my-20'>
+                <div class="flex gap-4">
+                    <i class="fa-solid fa-location-dot text-5xl drop-shadow-lg text-white font-bold" style="color: #ffffff;"></i>
+                    <p id="city" class=' text-5xl drop-shadow-lg text-white font-bold'>Lahore</p>
+                </div>
+                <div>
+                    <p id="temp" class=' text-9xl text-white drop-shadow-lg font-bold'>30°C</p>
+                </div>
+                
+            </div>
+            <div class="flex justify-between">
+                <div class="flex gap-4">
+                    <i class="fa-solid fa-water text-5xl drop-shadow-lg text-white font-bold" style="color: #ffffff;"></i>
+                    <p id="humidity" class=' drop-shadow-lg text-5xl text-white font-bold'>Na</p>
+                </div>
+                <div class="flex gap-4">
+                    <i class="fa-solid fa-wind drop-shadow-lg text-5xl text-white font-bold" style="color: #ffffff;"></i>
+                    <p id="wind" class='drop-shadow-lg text-5xl text-white font-bold'>Na</p>
+                </div>
+            </div>
+        </div>  
+
+        </div>
+      
+    </div>
+
+    <!-- <div class="flex">
+        <p id="temp">temperature</p>
+        <p id="humidity">humidity</p>
+        <p id="wind">wind</p>
+    </div> -->
+
+
+    <script>
+       
+        const apiKey = "ce8a87626c672966a3b78d11ab06566f";
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=`;
+
+        const SearchBox = document.querySelector(".search input");
+        const SearchBtn = document.querySelector(".search Button");
+
+        async function checkWeather(city) {
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            const data = await response.json();
+
+            document.getElementById("city").innerHTML = data.name;
+            document.getElementById("temp").innerHTML = Math.round(data.main.temp) + "°C";
+            document.getElementById("humidity").innerHTML = data.main.humidity + "%";
+            document.getElementById("wind").innerHTML = data.wind.speed + "km/h";
+            
+        }
+
+        SearchBtn.addEventListener("click" , ()=>{
+            checkWeather(SearchBox.value);
+        })
+
+
+       
+    </script>
+</body>
+
+</html>
